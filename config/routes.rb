@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :sales, only: [:index]
-  resources :catalogues, only: [:index]
+  resources :catalogue, only: [:index]
+
+  namespace :catalogue do
+    resources :suppliers, only: [:index, :new, :create]
+  end
   resources :inventories, only: [:index]
 end
