@@ -21,6 +21,8 @@ gem 'puma', '~> 5.0'
 gem 'importmap-rails'
 
 # FE
+gem 'simple_form'
+gem 'simple_form-tailwind'
 gem 'slim-rails'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]

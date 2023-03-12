@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class CataloguesController < ApplicationController
+class CatalogueController < ApplicationController
   def index; end
 end
