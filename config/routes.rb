@@ -11,9 +11,16 @@ Rails.application.routes.draw do
 
   resources :sales, only: [:index]
   resources :catalogue, only: [:index]
+  resources :suppliers, only: [:index, :new, :create, :show]
 
   namespace :catalogue do
-    resources :suppliers, only: [:index, :new, :create]
+    resources :suppliers, only: [:index, :new, :create, :show] do
+      # collection do
+      #   get :select
+      #   post :selected
+      # end
+      resources :products, only: [:index]
+    end
   end
   resources :inventories, only: [:index]
 end

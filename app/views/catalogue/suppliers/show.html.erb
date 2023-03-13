@@ -1,0 +1,9 @@
+<div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+  <div class="max-w-lg mx-auto mt-16 text-center max-w-sm rounded overflow-hidden shadow-lg p-10">
+    <h1 class="mb-4 text-3xl font-black"><%= @supplier.name %></h1>
+    <p class="text-lg leading-snug"><%= @supplier.email %></p>
+  </div>
+  <% @products.each do |product| %>
+    <%= product.inspect %>
+  <% end %>
+</div>
