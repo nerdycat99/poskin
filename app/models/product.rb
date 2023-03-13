@@ -7,4 +7,8 @@ class Product < ApplicationRecord
   # Product.category_tags  #=> [<CategoryTag @name="Sports">, ...]
   # CategoryTag.products   #=> [<Product @name="UserA">, ...]
   # Product.category_tags.empty?
+
+  scope :published, lambda {
+    where(publish: true)
+  }
 end

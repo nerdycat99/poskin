@@ -1,28 +1,37 @@
 # frozen_string_literal: true
 
 class Catalogue::SuppliersController < ApplicationController
-  def index
-    @suppliers = Supplier.all
-  end
+  before_action :supplier, only: %i[index create]
 
-  def new
-    @supplier = Supplier.new
-    @gst_rates = TaxRate.all
+  def index; end
+
+  def show
+    Rails.logger.debug 'in here'
+    @supplier = existing_supplier(id: params['id'])
+    @products = @supplier.products
   end
 
   def create
-    @supplier = Supplier.new(supplier_params)
-    if @supplier.save
-      redirect_to catalogue_suppliers_path
-      # redirect_to @recipe # redirects to recipes/:id
+    if existing_supplier.present?
+      redirect_to catalogue_supplier_path(existing_supplier.id)
     else
-      render :new # just renders the view - does not redirect
+      flash.now.alert = 'Please select a supplier from the list'
+      render :index
     end
   end
 
   private
 
+  def supplier
+    @supplier ||= Supplier.new
+  end
+
+  def existing_supplier(id: nil)
+    supplier_id = id || supplier_params[:id]
+    @existing_supplier = Supplier.find_by(id: supplier_id) if supplier_id.present?
+  end
+
   def supplier_params
-    params.require(:supplier).permit(:name, :email, :phone, :tax_rate_id, :address_id)
+    params.require(:supplier).permit(:id)
   end
 end
