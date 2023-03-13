@@ -1,0 +1,37 @@
+<main class="p-12 mx-auto text-gray-800 max-w-7xl">
+  <% if @product.errors.any? %>
+    <% @product.errors.full_messages.each do |message|%>
+       <p class="text-red-700 text-base"><%= message %> </p>
+    <%end%>
+    <br />
+  <%end%>
+  <%= @product.inspect %>
+  <%= @product.display_cost_price %>
+  <%= simple_form_for @product, builder: TailwindFormBuilder, class: "mt-6", url: catalogue_supplier_products_path do |f| %>
+    <%= f.label "Product Title" %>
+    <%= f.text_field :title, placeholder: 'My Product' %>
+    <br />
+    <%= f.label "Product Description" %>
+    <%= f.text_field :description, placeholder: 'Description of my product' %>
+    <br />
+    <%= f.label "Notes" %>
+    <%= f.text_field :notes, placeholder: 'anything you like in here' %>
+    <br />
+    <%= f.label "SKU Code" %>
+    <%= f.text_field :sku_code, value: @product.sku_code %>
+    <br />
+    <%= f.input :publish, as: :select, collection: ['Yes', 'No'], required: true, include_blank: false, label: 'Publish this Product?  ', selected: @product.display_published %>
+    <br />
+    <%= f.label "Cost price" %>
+    <%= f.text_field :cost_price, placeholder: '100.99', value: @product.display_cost_price %>
+    <%= f.label "Markup" %>
+    <%= f.text_field :markup, placeholder: '50%', value: @product.display_markup %>
+    <br />
+    <%= f.label "Accounting Code" %>
+    <%= f.collection_select :accounting_code_id, AccountingCode.order(:name),:id,:name, include_blank: true %>
+    <br />
+    <br />
+    <%= link_to '<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-1/4 lg:w-1/4 py-2 flex flex-col items-center justify-center">Create Product</button>'.html_safe, catalogue_supplier_products_path, method: :post %>
+  <% end %>
+  <%= link_to '<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-1/4 lg:w-1/4 py-2 flex flex-col items-center justify-center">Back to Supplier Products</button>'.html_safe, catalogue_supplier_path(@product.supplier.id), method: :get %>
+</main>

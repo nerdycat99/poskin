@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       #   get :select
       #   post :selected
       # end
-      resources :products, only: [:index]
+      resources :products, only: [:index, :new, :create]
     end
   end
   resources :inventories, only: [:index]
