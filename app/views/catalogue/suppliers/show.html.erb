@@ -6,4 +6,8 @@
   <% @products.each do |product| %>
     <%= product.inspect %>
   <% end %>
+  <div class="px-6 pt-4 pb-2">
+  <%= link_to '<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold w-1/3 lg:w-full py-2">Create New Product</button>'.html_safe, new_catalogue_supplier_product_path(@supplier.id) %>
+</div>
+
 </div>

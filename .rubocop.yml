@@ -28,6 +28,9 @@ Layout/LineLength:
   Max: 150
   Exclude:
     - app/helpers/tailwind_form_builder.rb
+    - spec/requests/catalogue/products_spec.rb
+    - spec/requests/catalogue/products_spec.rb
+
 Rails/HasAndBelongsToMany:
   Exclude:
     - app/models/variant.rb
@@ -45,6 +48,17 @@ Metrics/AbcSize:
 Metrics/CyclomaticComplexity:
   Exclude:
 
+Lint/DuplicateBranch:
+  Exclude:
+    - app/helpers/tailwind_form_builder.rb
+
+Rails/OutputSafety:
+  Exclude:
+    - app/helpers/tailwind_form_builder.rb
+
+Naming/PredicateName:
+  Exclude:
+    - app/helpers/tailwind_form_builder.rb
 
 Metrics/PerceivedComplexity:
   Exclude:

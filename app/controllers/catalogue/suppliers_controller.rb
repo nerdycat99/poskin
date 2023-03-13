@@ -6,7 +6,6 @@ class Catalogue::SuppliersController < ApplicationController
   def index; end
 
   def show
-    Rails.logger.debug 'in here'
     @supplier = existing_supplier(id: params['id'])
     @products = @supplier.products
   end
